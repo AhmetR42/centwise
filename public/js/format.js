@@ -87,6 +87,7 @@ export function spendingPace(daily, budget) {
 /** Turn a decimal string typed by the user ("12,50" or "12.50") into a number. */
 export function parseAmount(text) {
   const cleaned = String(text).trim().replace(/\s/g, '');
+  if (cleaned === '') return NaN;
   const normalised = cleaned.includes(',') && !cleaned.includes('.')
     ? cleaned.replace(',', '.')
     : cleaned.replace(/,/g, '');

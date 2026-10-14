@@ -98,9 +98,9 @@ class DemoData
         $user->transactions()->createMany($rows);
 
         $user->goals()->createMany([
-            ['name' => 'Emergency fund', 'target' => 200000, 'saved' => 124000, 'deadline' => null, 'color' => '#5fb88a'],
-            ['name' => 'New laptop', 'target' => 140000, 'saved' => 52000, 'deadline' => $today->copy()->addMonths(4)->endOfMonth()->toDateString(), 'color' => '#6fa3d8'],
-            ['name' => 'Summer trip', 'target' => 90000, 'saved' => 31000, 'deadline' => $today->copy()->addMonths(8)->startOfMonth()->toDateString(), 'color' => '#e0915f'],
+            ['name' => 'Emergency fund', 'target' => 200000, 'saved' => 124000, 'deadline' => null, 'color' => '#2fae6a'],
+            ['name' => 'New laptop', 'target' => 140000, 'saved' => 52000, 'deadline' => $today->copy()->addMonths(4)->endOfMonth()->toDateString(), 'color' => '#2f8fe0'],
+            ['name' => 'Summer trip', 'target' => 90000, 'saved' => 31000, 'deadline' => $today->copy()->addMonths(8)->startOfMonth()->toDateString(), 'color' => '#f08a3c'],
         ]);
     }
 }

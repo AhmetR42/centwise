@@ -54,4 +54,5 @@ test('amounts typed with a comma or a dot', () => {
   assert.equal(parseAmount('1,234.56'), 1234.56);
   assert.equal(parseAmount(' 7 '), 7);
   assert.ok(Number.isNaN(parseAmount('abc')));
+  assert.ok(Number.isNaN(parseAmount('')));
 });
