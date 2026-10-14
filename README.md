@@ -2,6 +2,8 @@
 
 A personal budget app built as a **Laravel REST API** with a **JavaScript dashboard** on top of it. Track income and spending, give every category a monthly budget, follow your spending pace through the month and save towards goals. The interface switches between English and Dutch, and between a light and a dark theme.
 
+**Live demo:** [centwise-5y03.onrender.com](https://centwise-5y03.onrender.com/) (free hosting, so the first visit can take about a minute to wake up; press "Try it with example data" to look around)
+
 [![CI](https://github.com/AhmetR42/centwise/actions/workflows/ci.yml/badge.svg)](https://github.com/AhmetR42/centwise/actions/workflows/ci.yml)
 
 ![Overview](docs/screenshots/overview.png)
