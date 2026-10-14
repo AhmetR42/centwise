@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: centwise
+    runtime: docker
+    plan: free
+    healthCheckPath: /up
+    autoDeploy: true

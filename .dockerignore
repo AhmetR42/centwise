@@ -1,0 +1,13 @@
+.git
+.github
+.env
+vendor
+docs
+tests
+storage/logs/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+database/*.sqlite
+database/data
+bootstrap/cache/*.php

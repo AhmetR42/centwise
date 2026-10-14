@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Keep the SQLite database between restarts
+      - centwise-data:/app/database/data
+
+volumes:
+  centwise-data:

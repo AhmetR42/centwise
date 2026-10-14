@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Check code style
+        run: vendor/bin/pint --test
+
+      - name: Run tests
+        run: php artisan test
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run JavaScript tests
+        run: node --test public/js/tests/*.test.js
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build Docker image
+        run: docker build -t centwise .
+
+      - name: Smoke test the container
+        run: |
+          docker run -d --name centwise -p 8000:8000 centwise
+          for i in $(seq 1 30); do
+            if curl -fs http://localhost:8000/up > /dev/null; then
+              curl -fs http://localhost:8000/ > /dev/null
+              curl -fs -X POST -H 'Accept: application/json' http://localhost:8000/api/v1/auth/demo | grep -q token
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs centwise
+          exit 1
